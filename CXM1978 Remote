@@ -1,0 +1,165 @@
+desc:CXM1978 midi Remote
+
+slider1:0<0,15,1{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16}>MIDI Channel
+
+slider2: 64 <0,127,1> BASS CC 14
+slider3: 64 <0,127,1> MIDS CC 15
+slider4: 64 <0,127,1> CROSS CC 16
+slider5: 64 <0,127,1> TREBLE CC 17
+slider6: 64 <0,127,1> MIX CC 18
+slider7: 64 <0,127,1> PRED-DLY CC 19
+slider8: 0 <0,3,1> TYPE CC 23
+slider9: 1 <1,3,1> DIFFUSION CC 24
+slider10: 1 <1,3,1> TANK MOD CC 25
+slider11: 1 <1,3,1> CLOCK CC 26
+
+@init
+
+//ch = 0; // 0..15
+
+// CC#14
+cc1 = 14;
+old_value1 = -1;
+
+// CC#15
+cc2 = 15;
+old_value2 = -1;
+
+// CC#16
+cc3 = 16;
+old_value3 = -1;
+
+// CC#17
+cc4 = 17;
+old_value4 = -1;
+
+// CC#18
+cc5 = 18;
+old_value5 = -1;
+
+// CC#19
+cc6 = 19;
+old_value6 = -1;
+
+// CC#23
+cc7 = 23;
+old_value7 = -1;
+
+// CC#24
+cc8 = 24;
+old_value8 = -1;
+
+// CC#25
+cc9 = 25;
+old_value9 = -1;
+
+// CC#26
+cc10 = 26;
+old_value10 = -1;
+
+
+
+
+@slider
+//MIDI CHANNEL
+
+ch = slider1;
+
+// CC#14
+value1 = min(max(0, slider2|0), 127);
+
+// CC#15
+value2 = min(max(0, slider3|0), 127);
+
+// CC#16
+value3 = min(max(0, slider4|0), 127);
+
+// CC#17
+value4 = min(max(0, slider5|0), 127);
+
+// CC#18
+value5 = min(max(0, slider6|0), 127);
+
+// CC#19
+value6 = min(max(0, slider7|0), 127);
+
+// CC#23
+value7 = min(max(0, slider8|0), 127);
+
+// CC#24
+value8 = min(max(0, slider9|0), 127);
+
+// CC#25
+value9 = min(max(0, slider10|0), 127);
+
+// CC#26
+value10 = min(max(0, slider11|0), 127);
+
+
+
+
+
+@block
+
+// CC#14
+value1 != old_value1 ? (
+  old_value1 = value1;
+  midisend(0, 0xB0 | ch, cc1, value1);
+);
+
+// CC#15
+value2 != old_value2 ? (
+  old_value2 = value2;
+  midisend(0, 0xB0 | ch, cc2, value2);
+);
+
+// CC#16
+value3 != old_value3 ? (
+  old_value3 = value3;
+  midisend(0, 0xB0 | ch, cc3, value3);
+);
+
+// CC#17
+value4 != old_value4 ? (
+  old_value4 = value4;
+  midisend(0, 0xB0 | ch, cc4, value4);
+);
+
+// CC#18
+value5 != old_value5 ? (
+  old_value5 = value5;
+  midisend(0, 0xB0 | ch, cc5, value5);
+);
+
+// CC#19
+value6 != old_value6 ? (
+  old_value6 = value6;
+  midisend(0, 0xB0 | ch, cc6, value6);
+);
+
+// CC#23
+value7 != old_value7 ? (
+  old_value7 = value7;
+  midisend(0, 0xB0 | ch, cc7, value7);
+);
+
+// CC#24
+value8 != old_value8 ? (
+  old_value8 = value8;
+  midisend(0, 0xB0 | ch, cc8, value8);
+);
+
+// CC#25
+value9 != old_value9 ? (
+  old_value9 = value9;
+  midisend(0, 0xB0 | ch, cc9, value9);
+);
+
+// CC#26
+value10 != old_value10 ? (
+  old_value10 = value10;
+  midisend(0, 0xB0 | ch, cc10, value10);
+);
+
+
+
